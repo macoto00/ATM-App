@@ -28,7 +28,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.opencsv:opencsv:5.5.2'
-	implementation 'org.joda:joda-time:2.10.12'
+	implementation 'joda-time:joda-time:2.10.12'
 }
 
 tasks.named('test') {
