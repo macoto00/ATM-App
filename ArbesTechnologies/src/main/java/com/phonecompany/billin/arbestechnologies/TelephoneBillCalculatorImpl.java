@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class TelephoneBillCalculatorImpl implements TelephoneBillCalculator {
             updateMostFrequentNumber(phoneNumber);
 
             // Calculate call cost based on the rules and duration
-            BigDecimal callCost = calculateCallCost(startTime, durationMinutes);
+            BigDecimal callCost = calculateCallCost(startTime.toLocalTime(), durationMinutes);
 
             // Accumulate the call cost
             totalCost = totalCost.add(callCost);
@@ -49,17 +50,9 @@ public class TelephoneBillCalculatorImpl implements TelephoneBillCalculator {
             phoneNumberToDuration.put(phoneNumber, phoneNumberToDuration.getOrDefault(phoneNumber, 0) + (int) durationMinutes);
         }
 
-        // Apply promo rule: exclude most frequently called number
+        // Apply promo rule: exclude most frequent number
         if (mostFrequentNumber != null) {
             phoneNumberToDuration.remove(mostFrequentNumber);
-        }
-
-        // Calculate additional call cost for longer calls
-        for (Map.Entry<String, Integer> entry : phoneNumberToDuration.entrySet()) {
-            int durationMinutes = entry.getValue();
-            if (durationMinutes > 5) {
-                totalCost = totalCost.add(BigDecimal.valueOf((durationMinutes - 5) * 0.20));
-            }
         }
 
         return totalCost;
@@ -73,9 +66,15 @@ public class TelephoneBillCalculatorImpl implements TelephoneBillCalculator {
         }
     }
 
-    private BigDecimal calculateCallCost(LocalDateTime startTime, long durationMinutes) {
-        int hour = startTime.getHour();
-        BigDecimal rate = (hour >= 8 && hour < 16) ? BigDecimal.ONE : new BigDecimal("0.50");
+    private BigDecimal calculateCallCost(LocalTime callTime, long durationMinutes) {
+        BigDecimal rate = (callTime.isAfter(LocalTime.of(8, 0)) && callTime.isBefore(LocalTime.of(16, 0)))
+                ? BigDecimal.ONE : new BigDecimal("0.50");
+
+        if (durationMinutes > 5) {
+            BigDecimal additionalCost = BigDecimal.valueOf((durationMinutes - 5) * 0.20);
+            return rate.multiply(BigDecimal.valueOf(5)).add(additionalCost);
+        }
+
         return rate.multiply(BigDecimal.valueOf(durationMinutes));
     }
 }
