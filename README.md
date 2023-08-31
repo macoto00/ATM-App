@@ -21,43 +21,71 @@ Rozšířitelnost: Pro podporu vlastních datových typů a omezení vytvořte r
 Výjimky: Definujte vlastní výjimky pro různé chybové scénáře, např. chybějící povinný argument, nesprávný formát argumentu, překročení omezení apod.
 
 ```
-public class Option {
-    private String shortName;
-    private String longName;
+// OptionType definuje různé typy voleb
+enum OptionType {
+    INTEGER, STRING, BOOLEAN, ENUM, CUSTOM
+}
+
+// Třída reprezentující jednu volbu
+class Option {
+    private String name;
+    private OptionType type;
     private boolean required;
     private String description;
     private String[] aliases;
     private Object defaultValue;
-    private OptionType type;
     private OptionValidator validator;
-    // případně další metody a atributy
+    // Další atributy a metody
 }
 
-public interface OptionValidator {
+// Rozhraní pro validaci hodnot volby
+interface OptionValidator {
     boolean validate(Object value);
 }
 
-public class IntegerOption extends Option {
+// Podtřída pro celočíselné volby
+class IntegerOption extends Option {
     private Integer minValue;
     private Integer maxValue;
-    // případně další metody a atributy
+    // Metody pro validaci a zpracování
 }
 
-public class BooleanOption extends Option {
+// Podtřída pro volby typu boolean
+class BooleanOption extends Option {
     private String[] trueValues;
     private String[] falseValues;
-    // případně další metody a atributy
+    // Metody pro validaci a zpracování
 }
 
-public class ArgumentParser {
+// ArgumentParser pro zpracování vstupních argumentů
+class ArgumentParser {
     private List<Option> options;
-    // metoda pro registraci voleb
+    // Metoda pro registraci voleb
     public void addOption(Option option) {
         // ...
     }
-    // metoda pro zpracování argumentů
+    // Metoda pro zpracování argumentů
     public void parse(String[] args) {
         // ...
+    }
+}
+
+// Ukázková aplikace kalkulačky s využitím knihovny pro zpracování vstupních argumentů
+public class CalculatorApp {
+    public static void main(String[] args) {
+        ArgumentParser parser = new ArgumentParser();
+        // Registrace voleb do parseru
+        
+        // Zpracování argumentů
+        parser.parse(args);
+        
+        // Získání hodnot a provádění kalkulací
+        int leftOperand = parser.getIntegerOptionValue("left");
+        int rightOperand = parser.getIntegerOptionValue("right");
+        Operator operator = parser.getEnumOptionValue("operator", Operator.class);
+        boolean verbose = parser.getBooleanOptionValue("verbose");
+        
+        // Provádění kalkulace a výpis výsledku
     }
 }
 
