@@ -30,7 +30,7 @@ public class Option {
     private Object defaultValue;
     private OptionType type;
     private OptionValidator validator;
-    // další metody a atributy
+    // případně další metody a atributy
 }
 
 public interface OptionValidator {
@@ -40,13 +40,13 @@ public interface OptionValidator {
 public class IntegerOption extends Option {
     private Integer minValue;
     private Integer maxValue;
-    // další metody a atributy
+    // případně další metody a atributy
 }
 
 public class BooleanOption extends Option {
     private String[] trueValues;
     private String[] falseValues;
-    // další metody a atributy
+    // případně další metody a atributy
 }
 
 public class ArgumentParser {
