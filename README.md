@@ -6,7 +6,7 @@ Elaborate and research the details based on own considerations. However, ensure 
 
 Development Task:
 
-The application will be:
+The application should be:
 
 1) Built using technologies based on own preferences.
 
