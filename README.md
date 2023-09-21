@@ -32,9 +32,16 @@ Thinking about using Angular Framework or just create HTML, CSS, JS in static fo
 
 Decided to build App on Angular - just to remember things and for example. Also using Bootstrap Framework. - Later on I'd like to rebuild FE on React for learning purpouse. 
 
-# Future Development
+# Future ongoing Development
 
 1) Unit tests
-2) Joining tables properly
+2) Joining tables relations
 3) FE & BE connection via @CrossOrigin
 4) FE on React
+5) Password reset
+6) Password change
+7) Mailer
+8) Verify email
+9) Transactions Model Class
+10) UserAccount Model class
+11) Admin Role
