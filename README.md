@@ -35,6 +35,6 @@ Decided to build App on Angular - just to remember things and for example. Also 
 # Future Development
 
 1) Unit tests
-2) joining tables properly
+2) Joining tables properly
 3) FE & BE connection via @CrossOrigin
 4) FE on React
