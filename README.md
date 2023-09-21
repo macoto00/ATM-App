@@ -18,7 +18,7 @@ The application should be:
 
 I've decided to complete this task more robust. The desired functionality consists of:
 
-1) A good loking FE with registration & login, About page, Contact page.
+1) A good looking FE with registration & login, About page, Contact page.
 2) User must verify email (email sender from BE will send verification link).
 3) Verified & logged user can create an account & can deposit and withdraw means of payment. It is also possible to send means of payment to other accounts.
 4) User can change password or reset forgotten password || update profile.
