@@ -16,6 +16,15 @@ The application should be:
 
 # Description of the Development process
 
+I've decided to complete this task more robust. The desired functionality consists of:
+
+1) A good loking FE with registration & login, About page, Contact page.
+2) User must verify email (email sender from BE will send verification link).
+3) Verified & logged user can create an account & can deposit and withdraw means of payment. It is also possible to send means of payment to other accounts.
+4) User can change password or reset forgotten password || update profile.
+5) User can see Account money balance and history of transactions.
+6) User can delete Account.
+
 ## Backend 
 
 Using Java, Spring Boot, Gradle, Application Variables, MySQL Database.
