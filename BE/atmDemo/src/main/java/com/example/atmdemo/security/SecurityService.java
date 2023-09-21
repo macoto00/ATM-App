@@ -1,10 +1,10 @@
 package com.example.atmdemo.security;
 
-import com.example.atmdemo.DTOs.UserCreationDTO;
+import com.example.atmdemo.DTOs.RegisterUserDTO;
 
 public interface SecurityService {
     boolean userExistsByEmail(String email);
-    void registerUser(UserCreationDTO userCreationDTO);
+    void registerUser(RegisterUserDTO registerUserDTO);
     String generateToken();
     String generateNickname(String firstName, String lastName);
     String cleanseInput(String input);
