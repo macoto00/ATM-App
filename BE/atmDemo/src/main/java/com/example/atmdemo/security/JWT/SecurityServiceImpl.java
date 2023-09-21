@@ -1,7 +1,9 @@
 package com.example.atmdemo.security.JWT;
 
-import com.example.atmdemo.DTOs.UserCreationDTO;
+import com.example.atmdemo.DTOs.RegisterUserDTO;
+import com.example.atmdemo.models.Role;
 import com.example.atmdemo.models.User;
+import com.example.atmdemo.repositories.RoleRepository;
 import com.example.atmdemo.repositories.UserRepository;
 import com.example.atmdemo.security.SecurityService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.Normalizer;
+import java.util.Collections;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -18,6 +21,7 @@ public class SecurityServiceImpl implements SecurityService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
     @Override
     public boolean userExistsByEmail(String email) {
@@ -25,12 +29,16 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public void registerUser(UserCreationDTO userCreationDTO) {
+    public void registerUser(RegisterUserDTO registerUserDTO) {
         User user = new User();
-        user.setFirstName(userCreationDTO.getFirstName());
-        user.setLastName(userCreationDTO.getLastName());
-        user.setEmail(userCreationDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(userCreationDTO.getPassword()));
+        user.setFirstName(registerUserDTO.getFirstName());
+        user.setLastName(registerUserDTO.getLastName());
+        user.setEmail(registerUserDTO.getEmail());
+        user.setVerificationToken(generateToken());
+        user.setPassword(passwordEncoder.encode(registerUserDTO.getPassword()));
+        user.setNickname(generateNickname(registerUserDTO.getFirstName(), registerUserDTO.getLastName()));
+        Role roles = roleRepository.findByName("USER").get();
+        user.setRoles(Collections.singletonList(roles));
         userRepository.save(user);
     }
 
