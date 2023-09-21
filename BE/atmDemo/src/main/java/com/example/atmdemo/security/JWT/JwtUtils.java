@@ -36,7 +36,7 @@ public class JwtUtils {
         return userRepository.findByEmail(email).get();
     }
 
-    // ------- Cookie generating -----
+    // Cookie generating
     public ResponseCookie generateJwtCookie(Authentication userPrincipal) {
         String jwt = generateTokenFromUsername(userPrincipal.getName());
         return generateCookie("token", jwt, "/", (int) (SecurityConstants.JWT_EXPIRATION_TIME / 1000));
@@ -55,13 +55,13 @@ public class JwtUtils {
         return cookie;
     }
 
-    // ------- token generation -----
+    // token generation
     public String generateRefreshTokenFromUsername(String email) {
         Claims extraClaims = new DefaultClaims();
         UUID uuid = UUID.randomUUID();
         User user = userRepository.findByEmail(email).get();
         user.setUuid(uuid);
-        extraClaims.put("sub", username);
+        extraClaims.put("sub", email);
         extraClaims.put("jti", uuid.toString());
         userRepository.save(user);
 
@@ -82,7 +82,7 @@ public class JwtUtils {
                 .compact();
     }
 
-    // --- getting jwt from cookies ---
+    // getting jwt from cookies
 
     public String getJwtFromCookies(HttpServletRequest request) {
         try {
@@ -100,7 +100,7 @@ public class JwtUtils {
         }
     }
 
-    // --- getting username from token---
+    // getting username from token
     public String getUserNameFromJwtToken(String token) {
 
         return Jwts.parserBuilder().setSigningKey(key()).build()
@@ -147,12 +147,12 @@ public class JwtUtils {
 
     // clean cookies
     public ResponseCookie getCleanJwtCookie() {
-        ResponseCookie cookie = ResponseCookie.from("token", "Fox").path("/").build();
+        ResponseCookie cookie = ResponseCookie.from("token", "CleanJwtCookie").path("/").build();
         return cookie;
     }
 
     public ResponseCookie getCleanJwtRefreshCookie() {
-        ResponseCookie cookie = ResponseCookie.from("refreshToken", "Foxx").path("/").build();
+        ResponseCookie cookie = ResponseCookie.from("refreshToken", "CleanJwtRefreshCookie").path("/").build();
         return cookie;
     }
 
