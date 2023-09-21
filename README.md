@@ -16,12 +16,25 @@ The application should be:
 
 # Description of the Development process
 
-## Backend
+## Backend 
 
 Using Java, Spring Boot, Gradle, Application Variables, MySQL Database.
 
 Using GIT and GitHub as version controll system. Specifically GitHub Desktop && || Command line Commands. 
 
+For security is used Authentication and Authorisation. Using JWT Token stored in Cookies. 
+
+BE was continuously tested using Postman.
+
 ## Frontend
 
 Thinking about using Angular Framework or just create HTML, CSS, JS in static folder for faster development. I will see later. 
+
+Decided to build App on Angular - just to remember things and for example. Also using Bootstrap Framework. - Later on I'd like to rebuild FE on React for learning purpouse. 
+
+# Future Development
+
+1) Unit tests
+2) Joining tables properly
+3) FE & BE connection via @CrossOrigin
+4) FE on React
