@@ -1,6 +1,6 @@
 package com.example.atmdemo.services;
 
-import com.example.atmdemo.DTOs.UserCreationDTO;
+import com.example.atmdemo.DTOs.RegisterUserDTO;
 import com.example.atmdemo.DTOs.UserUpdateDTO;
 import com.example.atmdemo.models.User;
 import com.example.atmdemo.repositories.UserRepository;
@@ -19,12 +19,12 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public void createUser(UserCreationDTO userCreationDTO) {
+    public void createUser(RegisterUserDTO registerUserDTO) {
         User user = new User();
-        user.setFirstName(userCreationDTO.getFirstName());
-        user.setLastName(userCreationDTO.getLastName());
-        user.setEmail(userCreationDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(userCreationDTO.getPassword()));
+        user.setFirstName(registerUserDTO.getFirstName());
+        user.setLastName(registerUserDTO.getLastName());
+        user.setEmail(registerUserDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(registerUserDTO.getPassword()));
         userRepository.save(user);
     }
 
@@ -35,38 +35,43 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public void updateUser(UserUpdateDTO userUpdateDTO, Long id) {
-        User userToUpdate = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found for ID: " + id));
-
+    public void updateUser(User user, UserUpdateDTO userUpdateDTO) {
         if (userUpdateDTO.getFirstName() != null) {
-            userToUpdate.setFirstName(userUpdateDTO.getFirstName());
+            user.setFirstName(userUpdateDTO.getFirstName());
         }
         if (userUpdateDTO.getLastName() != null) {
-            userToUpdate.setLastName(userUpdateDTO.getLastName());
+            user.setLastName(userUpdateDTO.getLastName());
         }
         if (userUpdateDTO.getEmail() != null) {
-            userToUpdate.setEmail(userUpdateDTO.getEmail());
+            user.setEmail(userUpdateDTO.getEmail());
         }
-
-        userRepository.save(userToUpdate);
+        userRepository.save(user);
     }
 
-
     @Override
-    public void deleteUser(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+    public void deleteUser(User user) {
+        assert userRepository != null;
         userRepository.delete(user);
     }
 
     @Override
     public boolean userExistsByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public void changePassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 }
