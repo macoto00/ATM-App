@@ -77,6 +77,7 @@ public class UserController {
         }
         return ResponseEntity.badRequest().body("Refresh token is expired");
     }
+    
     @PostMapping("password-change")
     public ResponseEntity<?> changePassword(@RequestBody PasswordDTO passwordDTO, HttpServletRequest request) {
         User user = jwtUtils.getUserFromRequest(request);
