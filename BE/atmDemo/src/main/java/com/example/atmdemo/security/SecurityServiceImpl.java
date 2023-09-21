@@ -1,4 +1,4 @@
-package com.example.atmdemo.security.JWT;
+package com.example.atmdemo.security;
 
 import com.example.atmdemo.DTOs.RegisterUserDTO;
 import com.example.atmdemo.models.Role;
