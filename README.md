@@ -16,7 +16,7 @@ The application should be:
 
 # Description of the Development process
 
-## Backend
+## Backend 
 
 Using Java, Spring Boot, Gradle, Application Variables, MySQL Database.
 
