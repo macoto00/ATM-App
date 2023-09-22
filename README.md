@@ -27,6 +27,8 @@ I've decided to complete this task more robust. The desired functionality consis
 
 ## Backend 
 
+Developing BE with IntelliJ IDEA Ultimate.
+
 Using Java, Spring Boot, Gradle, Application Variables, MySQL Database.
 
 Using GIT and GitHub as version controll system. Specifically GitHub Desktop && || Command line Commands. 
@@ -36,6 +38,8 @@ For security is used Authentication and Authorisation. Using JWT Token stored in
 BE was continuously tested using Postman.
 
 ## Frontend
+
+Developing FE with Visual Studio Code.
 
 Thinking about using Angular Framework or just create HTML, CSS, JS in static folder for faster development. I will see later. 
 
