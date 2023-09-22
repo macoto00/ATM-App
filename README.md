@@ -57,7 +57,7 @@ Profile Page.
 
 Contact Page.
 
-![Snímek obrazovky 2023-09-22 101154](https://github.com/macoto00/ATM-App/assets/117540231/ef8faf08-aed6-4518-b577-97b5da4e38e0)
+![Snímek obrazovky 2023-09-22 101953](https://github.com/macoto00/ATM-App/assets/117540231/0f9152c5-9296-4749-9152-5f1a67d2f36e)
 
 Register.
 
