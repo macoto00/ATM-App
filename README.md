@@ -1,5 +1,7 @@
 ## * App is in Development Process *
 
+App is not fully complete. There is ongoing development process.
+
 # ATM Demo project
 
 The task is to design and develop an application for ATM operation. Limit the scope to a single scenario, for example, cash withdrawal.
