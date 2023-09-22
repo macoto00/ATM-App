@@ -1,4 +1,4 @@
-## === App is in Development Process ===
+## * App is in Development Process *
 
 # ATM Demo project
 
