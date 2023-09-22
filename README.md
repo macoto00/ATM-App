@@ -1,3 +1,5 @@
+## === App is in Development Process ===
+
 # ATM Demo project
 
 The task is to design and develop an application for ATM operation. Limit the scope to a single scenario, for example, cash withdrawal.
