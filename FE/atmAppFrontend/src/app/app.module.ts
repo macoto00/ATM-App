@@ -9,6 +9,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { FaqComponent } from './components/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    ContactComponent,
+    ProfileComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
